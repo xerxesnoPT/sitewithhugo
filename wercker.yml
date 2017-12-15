@@ -24,12 +24,12 @@ build:
         version: "0.17"
         theme: hugo-strata-theme
         flags: --buildDrafts=true
-    deploy:
+
+deploy:
   steps:
     - install-packages:
         packages: git ssh-client
-    - leipert/git-push:
-        gh_oauth: $GIT_TOKEN
-        repo: xerxesnoPT/xerxesnoPT.github.io
-        branch: master
+   - lukevivier/gh-pages@0.2.1:
+        token: $GIT_TOKEN
+        domain: xerxesnopt.github.io 
         basedir: public
