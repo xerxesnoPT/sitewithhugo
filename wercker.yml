@@ -22,5 +22,14 @@ build:
   steps:
     - arjen/hugo-build:
         version: "0.17"
-        theme: herring-cove
+        theme: hugo-strata-theme
         flags: --buildDrafts=true
+    deploy:
+  steps:
+    - install-packages:
+        packages: git ssh-client
+    - leipert/git-push:
+        gh_oauth: $GIT_TOKEN
+        repo: xerxesnoPT/xerxesnoPT.github.io
+        branch: master
+        basedir: public
