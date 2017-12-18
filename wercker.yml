@@ -21,7 +21,6 @@ build:
     # http://devcenter.wercker.com/docs/steps/index.html
   steps:
     - arjen/hugo-build:
-        version: "0.17"
         theme: hugo-strata-theme
         flags: --buildDrafts=true
 
