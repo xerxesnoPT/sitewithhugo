@@ -20,9 +20,14 @@ build:
     # Read more about steps on our dev center:
     # http://devcenter.wercker.com/docs/steps/index.html
   steps:
+    - install-packages:
+          packages: ruby
     - script:
-          name: Install pygments
-          code: pip install pygments
+          name: Install asciidoctor
+          code: gem install asciidoctor
+    - script:
+          name: Install pygments.rb
+          code: gem install pygments.rb
     - arjen/hugo-build:
         theme: hugo-strata-theme
         flags: --buildDrafts=true
