@@ -1,4 +1,4 @@
-baseurl = "http://xerxesnopt.github.io/"
+baseurl = "https://xerxesnopt.github.io/"
 languageCode = "zh"
 title = "xerxes blog"
 theme = "hugo-strata-theme"
