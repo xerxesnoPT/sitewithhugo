@@ -22,7 +22,7 @@ build:
   steps:
     - arjen/hugo-build:
         theme: hugo-strata-theme
-        version: "HEAD"
+        flags: --buildDrafts=true
 
 deploy:
     steps:
@@ -30,7 +30,5 @@ deploy:
             packages: git ssh-client
         - lukevivier/gh-pages@0.2.1:
             token: $GIT_TOKEN
-            repo: xerxesnoPT/xerxesnoPT.github.io
-            branch: master
             domain: xerxesnopt.github.io
             basedir: public
