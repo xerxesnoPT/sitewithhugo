@@ -17,7 +17,6 @@ data segment
     dd 1
 data ends
 ```
-
 - 第一个数据为01h，1个字节 data:0
 - 第二个数据为0001h，2个字节 data:1
 - 第三个数据为0000 0001h，4个字节 data:3
@@ -25,43 +24,47 @@ data ends
 ## dup
 
 用来进行数据的重复
-
 ```asm
+data segment
 db 3 dup (0) ;相当于定义了3个字节，db 0,0,0
-db 3 dup (0,1,2) ; db 0,1,2,0,1,2,0,1,2
+db 3 dup (0,1,2) ;db 0,1,2,0,1,2,0,1,2
+data ends
 ```
 
 ## offset
 
 伪指令,取得标号的偏移地址
 ```asm
+code segment
 start: mov ax, offset start ;相当于mov ax,0
     s: mov ax, offset s ; 相当于mov ax ,3 因为start这段指令占用3个字节
+code ends
 ```
 
 ## jmp指令
 
 无条件跳转，可只修改ip，也可同时修改cs跟ip
 
-根据偏移位置的jmp（只修改ip）
-**jmp short 标号**
+#### 根据偏移位置的jmp（只修改ip）
+
+`jmp short 标号`
 - 实现的是段内短转移，ip修改范围为8位（-128~127）
 
-**jmp near ptr 标号**
+`jmp near ptr 标号`
 - 16位的ip位移(-32768~32767)
 
-**jmp 16位reg**
+`jmp 16位reg`
 - 与上一条相同
 
-**jmp word ptr 内存单元地址（段内转移）**
+`jmp word ptr 内存单元地址（段内转移）`
 - 与上相同
 
-转移的目的地址在指令中的jmp指令（同时修改ip跟cs）
-
-**jmp far ptr 标号**
+#### 转移的目的地址在指令中的jmp指令（同时修改ip跟cs）
+`jmp far ptr 标号`
 - 段间转移,远转移
 
-**jmp dword ptr 内存单元地址（段间转移）**
+`jmp dword ptr 内存单元地址（段间转移）`
+
 - （cs）=（内存单元地址+2） ; 高位存cs
 - （ip）=（内存单元地址） ; 低位存ip
 
