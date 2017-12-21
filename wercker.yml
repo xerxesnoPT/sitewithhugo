@@ -31,7 +31,6 @@ build:
     - arjen/hugo-build:
         theme: hugo-strata-theme
         flags: --buildDrafts=true
-
 deploy:
     steps:
         - install-packages:
