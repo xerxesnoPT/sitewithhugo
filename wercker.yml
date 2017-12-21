@@ -30,6 +30,7 @@ build:
           code: gem install pygments.rb
     - arjen/hugo-build:
         theme: hugo-strata-theme
+        flags: -D
 deploy:
     steps:
         - install-packages:
