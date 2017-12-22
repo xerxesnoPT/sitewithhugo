@@ -9,6 +9,7 @@ paginate = 10
 PygmentsCodeFences = true
 pygmentsuseclasses = false #this is the default setting
 pygmentsstyle = "manni"
+disqusShortname = "xerxes-1"
 
 [params]
 	# To provide some metadata for search engines feel free to add a few
