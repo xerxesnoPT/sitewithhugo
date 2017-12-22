@@ -1,8 +1,9 @@
 ---
 title: "柯里化"
 date: 2017-11-01T13:06:01+08:00
-draft: true
-tag: ['haskell']
+draft: false
+categories: ['haskell']
+tags: ['hl基础语法']
 ---
 ## 柯里化
 haskell 趣学指南中在高阶函数这一章中提出了柯里化概念。

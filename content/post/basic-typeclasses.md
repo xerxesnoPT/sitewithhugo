@@ -1,8 +1,9 @@
 ---
 title: "typeclasses"
 date: 2017-11-02T13:06:01+08:00
-draft: true
-tag: ['haskell']
+draft: false
+categories: ['haskell']
+tags: ['hl基础语法']
 ---
 
 typeclasses: haskell 中的相当于类型接口的基类。

@@ -1,8 +1,9 @@
 ---
 title: "类型和函数"
 date: 2017-11-03T13:06:01+08:00
-draft: true
-tag: ['haskell']
+draft: false
+categories: ['haskell']
+tags: ['hl基础语法']
 ---
 ## Haskell的类型系统
 

@@ -1,7 +1,9 @@
 ---
 title: "转移静态BLOG"
 date: 2017-12-15T13:06:01+08:00
-draft: true
+draft: false
+categories: ['杂项']
+tags: ['hugo搭配gitpage']
 ---
 ## 转移原因
 

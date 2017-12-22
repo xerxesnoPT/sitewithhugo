@@ -1,8 +1,9 @@
 ---
 title: "asm-记录01 "
 date: 2017-12-01T13:06:01+08:00
-draft: true
-tag: ['asm']
+draft: false
+categories: ['二进制']
+tags: ['asm']
 ---
 
 ## 伪指令dd
