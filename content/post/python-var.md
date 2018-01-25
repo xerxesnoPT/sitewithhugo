@@ -9,7 +9,7 @@ tags: ['python 小问题']
 Python中，分为可变类型与不可变类型
 这里有一个很简单的例子:
 
-```
+```python
 a = 1
 def funa(a):
     a = 2
@@ -35,7 +35,7 @@ print (a)
 - 第二个函数中,funb函数首先传入a的指向[]对象的引用.(看作内存地址)
 然后使用了append函数对内存中的内容进行了改变.所以a=[1]. 如果如下
 
-```
+```python
 def funb(a):
     a = [1,2,3,4]
 print (a)
