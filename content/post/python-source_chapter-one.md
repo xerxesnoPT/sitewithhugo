@@ -42,7 +42,7 @@ python的整数对象中，除了PyObject。还有一个long变量，整数的�
 
 - 说明实际的Python对象中。不是仅仅只有一个PyObject。还占有一些额外内存。PyObject是必须的。
 
-## 定长对象和变长对象(可变，不可变)
+## 定长对象和变长对象
 整数对象的特殊信息是一个C中的整形变量，始终可以保存在`ob_ival`中.但是,对于字符串.C中没有此类型,而是n个char型变量.
 对于类似'n个...' python中有这么一个结构体- `PyVarObject`.
 
@@ -56,8 +56,8 @@ typedef struct {
 } PyVarObject;
 ```
 
-- 定长（不可变）对象的不同对象占用的内存大小是一样的。整数 1 跟100 占用的内存大小都是sizeof（PyIntObject）。
-- 变长 （可变) 对象占用的内存大小不同。例如字符串“Python”跟“Ruby”占用的内存大小不同。变长对象通常都是容器。`ob_size`指明了所容纳的元素的个数。
+- 定长对象的不同对象占用的内存大小是一样的。整数 1 跟100 占用的内存大小都是sizeof（PyIntObject）。
+- 变长 对象占用的内存大小不同。例如字符串“Python”跟“Ruby”占用的内存大小不同。变长对象通常都是容器。`ob_size`指明了所容纳的元素的个数。
 
 可以从定义中看到，`PyVarObejct`实际上只是对`PyObject`的一个扩展。所以，在Python内部，每一个对象都拥有相同的对象头部。所以在python中对对象的引用非常统一，只需要一个`PyObject*`指针即可.
 
@@ -114,22 +114,56 @@ typedef struct{
 - 可以看到，在以上的代码中.定义了作为一个数值对象应该支持的操作。
 - PyTypeObject 中允许一种类型同时指定三种不同对象的行为特征。
 
-### 类型的类型
+### python对象的多态性
 
-- 类型对象的类型是`PyType_Type`.
+python在创建对象时，内部通过`pyObject*`这个范型指针变量来保存和维护这个对象。
+`pyObject*` 指针所指的对象类型只能从指向对象的`ob_type`域动态判断.
 
-### 多态性
-
+```c
+void Print(PyObject* object)
+{
+  object ->ob_type ->tp_print(object);
+}
+```
+- 查看上面的代码就能发现，传入`PyIntObject*` 对象就会调用`PyIntObject`对象对应的类型对象中的定义
+- 传入`PyStringObject*` 就会调用`PyStringObject`对象对应的类型对象中定义的输出操作.
 
 ### 引用计数
 
-是python垃圾收集机制的一部分。
-- 类型对象是超越引用计数规则的。每一个对象中指向类型对象的指针不被视为对类型对象的引用。
+是Python垃圾收集机制的一部分.
 
+- 每个对象中都有一个`ob_refcnt`变量.维护对该对象的引用计数
+- 主要通过`Py_INCREF(op)`和`Py_DECREF(op)`两个宏来增加和减少引用计数
+- 当引用计数减少到0后，`Py_DECREF`调用"析构函数" （类型对象中定义的一个函数指针`tp_dealloc`)来释放内存。
 
+注意点：
 
+- 类型对象是超越引用计数规则的。永远不会被析构。每个对象中指向类型对象的指针不被视为对类型对象的引用。
 
+```c
+[object.h]
+#define _Py_NewReference(op) ((op) ->ob_refcnt = 1)
+#define _Py_Dealloc(op) ((*(op)->ob_type->tp_dealloc)((PyObject *)(op)))
+#define _Py_INCREF(op) ((op) ->ob_refcnt ++)
+#define _Py_DECREF(op) 
+    if (--(op) ->ob_refcnt !=0)
+        ;
+    else
+        _Py_Dealloc((PyObject *) (op))
+/*定义防止空指针的宏*/
+#define Py_XINCREF(op) if ((op) == NULL); else Py_INCREF(op)
+#define Py_XDECREF(op) if ((op) == NULL); else Py_DECREF(op)
+```
 
+### Python 对象的分类
+
+一般来说，分为5类
+
+- Fundamental 对象: 类型对象
+- Numeric 对象: 数值对象
+- Sequence 对象： 容纳其他对象的序列集合对象
+- Mapping 对象：相当于映射
+- Internal 对象：Python内部使用的对象
 
 
 
