@@ -1,5 +1,5 @@
 ---
-title: "python-source-one"
+title: "python-source-two"
 date: 2018-01-22T13:06:01+08:00
 draft: false
 categories: ['c','python']
@@ -66,6 +66,7 @@ PyTypeObject PyInt_Type = {
 从上面的代码中可以看到`PyInt_Type`中保存了关于`PyIntObject`对象的丰富元信息
 
 exp:如何比较2个整数对象的大小
+
 ```c
 [intobject.c]
 static int int_compare(PyIntObject *v, PyIntObject *w)
@@ -75,9 +76,11 @@ static int int_compare(PyIntObject *v, PyIntObject *w)
   retrun (i < j) ? -1 : (i > j) ? 1: 0;
 }
 ```
+
 - 实际上就是比较2个整数对象所维护的long值。
 
 exp：来看看`int_as_number`这个域：
+
 ```c
 [intobject.c]
 static PyNumberMethods int_as_number = {
@@ -133,6 +136,7 @@ PyObject *PyInt_FromLong(long ival)
 ## 小整数对象
 
 - 使用了对象池技术。[-5, 127)
+
 ```c
 #ifndef NSMALLPOSINTS
     #define NSMALLPOSINTS      257

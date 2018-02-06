@@ -28,8 +28,10 @@ type def struct _object {
 
 python 对象机制核心非常简单
 
-- 一个是引用计数
-- 一个是类型信息
+- 一个是引用计数:结构体中的`ob_refcnt`.是一个`int`值。
+- 一个是类型信息:结构体中另一个指向`_typeobject`的指针。`*ob_type`.
+- `_typeobject`:这是一个指定对象类型的结构体。可以认为它指明了类型的信息。存放元信息
+
 
 [intobject.h]
 ```c
@@ -41,6 +43,7 @@ typedef struct {
 python的整数对象中，除了PyObject。还有一个long变量，整数的值就保存在`ob_ival`中。
 
 - 说明实际的Python对象中。不是仅仅只有一个PyObject。还占有一些额外内存。PyObject是必须的。
+- 整型的值保存在`ob_ival`变量中。
 
 ## 定长对象和变长对象
 整数对象的特殊信息是一个C中的整形变量，始终可以保存在`ob_ival`中.但是,对于字符串.C中没有此类型,而是n个char型变量.
@@ -48,8 +51,9 @@ python的整数对象中，除了PyObject。还有一个long变量，整数的�
 
 [object.h]
 ```c
-    PyObject_HEAD
-    int ob_size;
+#define PyObject_VAR_HEAD \
+    PyObject_HEAD \
+    int ob_size; 
 
 typedef struct {
   PyObject_VAR_HEAD
@@ -60,6 +64,8 @@ typedef struct {
 - 变长 对象占用的内存大小不同。例如字符串“Python”跟“Ruby”占用的内存大小不同。变长对象通常都是容器。`ob_size`指明了所容纳的元素的个数。
 
 可以从定义中看到，`PyVarObejct`实际上只是对`PyObject`的一个扩展。所以，在Python内部，每一个对象都拥有相同的对象头部。所以在python中对对象的引用非常统一，只需要一个`PyObject*`指针即可.
+
+![image.png](http://upload-images.jianshu.io/upload_images/6865906-ce6fa7cfd29dc0a3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 ## 类型对象
 
@@ -111,6 +117,7 @@ typedef struct{
   ...
 } PyNumberMethods;
 ```
+- 第一个typedef的理解，把函数指针的内容拿出。
 - 可以看到，在以上的代码中.定义了作为一个数值对象应该支持的操作。
 - PyTypeObject 中允许一种类型同时指定三种不同对象的行为特征。
 
