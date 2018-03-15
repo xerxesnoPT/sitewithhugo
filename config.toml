@@ -52,8 +52,8 @@ disqusShortname = "xerxes-1"
 
 	[params.about]
 		hide  = false
-		title = "描述"
-		content = "常用python.会一丝haskell"
+		title = "mymymy"
+		content = "常用python."
 
 	[params.portfolio]
 		hide  = false

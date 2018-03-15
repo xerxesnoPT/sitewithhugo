@@ -48,3 +48,25 @@ tags: ['phone']
 - 刷入的kali nethunter:
     1. 需要选择需要刷入的 kali nethunter 安装包：arm64 是 64位，armhf32位，找和你 cpu 结构一致的，full 是完整版，minimal 是简版。
     2. 刷入手机对应的nethuer内核。kernel-nethunter 表示是内核，klte 是型号, touchwiz 是基于三星原厂 rom,marshmallow 是 安卓 6.0,lollipop 是 5.x 这里我这边是 cm 是通刷的。所以内核也是通刷三星的。
+
+- 安装完成之后步骤：
+    1. 实际操作时候有很多问题。后来直接通过官方6.0.1系统直接twrp卡刷nethunter。
+    2. 需要安装busybox。  
+    ```shell
+    adb push busybox /sdcard
+    adb shell
+    su
+    mount -o remount,rw /syetem的mount路径
+    cp /sdcard/busybox /system/xbin
+    busybox --install .
+    ```
+
+    3. 开启nethunter的app。这里需要挂在下chroot。full版本有问题，使用minimal的版本。
+    4. 更新源    
+    ```
+    echo "deb http://mirrors.ustc.edu.cn/kali kali-rolling main non-free contrib" > /etc/apt/sources.list
+    echo "deb http://mirrors.tuna.tsinghua.edu.cn/kali/ kali-rolling contrib main non-free" > /etc/apt/sources.list
+    wget https://http.kali.org/kali/pool/main/k/kali-archive-keyring/kali-archive-keyring_2018.1_all.deb && dpkg -i kali-archive-keyring_2018.1_all.deb
+    ```
+    
+

@@ -7,17 +7,17 @@ tags: ['phone']
 ---
 
 ## 下载heimdall。  
+
 网页提供的版本为1.4.0，download pit的时候会出错。浪费了半天时间。
-解决方法直接去git拉取最新的1.4.2版本，自己编译下。
-1. 需要进入github直接source安装。 [地址](https://github.com/Benjamin-Dobell/Heimdall.git)
-2. 在debian上安装需要使用cmake编译。安装依赖包  
-```
-sudo apt-get install cmake, qt5-default, libusb-1.0.0-dev
+解决方法直接去git拉取最新的1.4.2版本，自己编译下。  
+1. 需要进入github直接source安装。[地址](https://github.com/Benjamin-Dobell/Heimdall.git)  
+2. 在debian上安装需要使用cmake编译。安装依赖包    
+```shell  
+sudo apt-get install cmake, qt5-default, libusb-1.0.0-dev  
 cd "heimdall's path"
 mkdir build
 cd build
 cmake -DCMAKE_BUILD_TYPE=Release ..
-
 ```
 3. 编译完成后会在build目录下生成bin目录。包含`Heimdall`, `Heimdall-frontend` 两个可执行文件。 
 注意：此处需要把当前的heimdall文件复制到`/usr/bin/heimdall`下，否则`Heimdall-frontend`无法执行。
@@ -26,6 +26,6 @@ cmake -DCMAKE_BUILD_TYPE=Release ..
 
 ## 资源
 
-[root工具](http://download.chainfire.eu/397/CF-Root1/CF-Auto-Root-klte-kltexx-smg900f.zip?retrieve_file=1)
-[twrp](https://dl.twrp.me/klteduos/)
+[root工具](http://download.chainfire.eu/397/CF-Root1/CF-Auto-Root-klte-kltexx-smg900f.zip?retrieve_file=1)   
+[twrp](https://dl.twrp.me/klteduos/)   
 [参考文档] (http://www.all-things-android.com/content/how-root-samsung-mobile-device)
