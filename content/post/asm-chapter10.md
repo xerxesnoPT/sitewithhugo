@@ -9,10 +9,11 @@ tags: ['asm']
 ## ret
 
 two steps
-
+<!--more-->
 1. (ip)=((ss)*16+(sp))
 2. (sp)=(sp)+2
 like: pop ip
+
 
 ## retf
 

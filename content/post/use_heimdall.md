@@ -10,6 +10,7 @@ tags: ['phone']
 
 网页提供的版本为1.4.0，download pit的时候会出错。浪费了半天时间。
 解决方法直接去git拉取最新的1.4.2版本，自己编译下。  
+<!--more-->
 1. 需要进入github直接source安装。[地址](https://github.com/Benjamin-Dobell/Heimdall.git)  
 2. 在debian上安装需要使用cmake编译。安装依赖包    
 ```shell  

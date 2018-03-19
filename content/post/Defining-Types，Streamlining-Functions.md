@@ -13,6 +13,7 @@ tags: ['hl基础语法']
 data BookInfo = Book Int String [String]
                           deriving (Show)
 ```
+<!--more-->
 
 上面代码中
 

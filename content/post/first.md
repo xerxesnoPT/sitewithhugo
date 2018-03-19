@@ -10,6 +10,8 @@ tags: ['hugo搭配gitpage']
 由于考虑到平时写文档都是markdown
 使用django后台动态生成比较慢。而且github还有page服务。直接使用静态网站
 
+<!--more-->
+
 ***
 
 ## 选择hugo的原因

@@ -10,6 +10,7 @@ tags: ['fluent python','with']
 
 - with 语句和上下文管理器
 - for、while 和try语句的else子句
+<!--more-->
 
 ## if语句之外的else块
 else子句不仅能够在if语句中使用，还能在for, while, try语句中使用.

@@ -9,6 +9,8 @@ tags: ['hl基础语法']
 typeclasses: haskell 中的相当于类型接口的基类。
 在检查`==`方法时
 返回
+
+<!--more-->
 ```haskell
 :t (==)
 (==) :: (Eq a) => a -> a -> Bool

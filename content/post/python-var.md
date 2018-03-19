@@ -8,6 +8,7 @@ tags: ['python 小问题']
 
 Python中，分为可变类型与不可变类型
 这里有一个很简单的例子:
+<!--more-->
 
 ```python
 a = 1

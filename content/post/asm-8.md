@@ -10,6 +10,8 @@ tags: ['asm']
 
 定义双字型数据。 
 
+<!--more-->
+
 ```asm
 
 data segment

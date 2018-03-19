@@ -9,6 +9,7 @@ tags: ['markdown','pdf']
 # markdown 如何转为pdf打印。  
 ## 解决方案：  
 - 直接使用pandoc这个haskell应用
+<!--more-->
 
 ## 具体操作：  
 1. 由于已经安装了haskell。直接使用cabal(相当于python的pip)安装编译。编译pandoc时间蛮久的，耐心等待吧    

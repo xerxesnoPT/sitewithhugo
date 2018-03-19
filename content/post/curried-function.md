@@ -9,6 +9,8 @@ tags: ['hl基础语法']
 haskell 趣学指南中在高阶函数这一章中提出了柯里化概念。
 举例`max`函数
 首先看`max`函数的类型
+
+<!--more-->
 ```haskell
 max :: Ord a => a -> a -> a
 ```

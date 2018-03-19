@@ -16,6 +16,7 @@ tags: ['phone']
     3. 下载[Heimdall套件](http://glassechidna.com.au/heimdall/#downloads)来对三星设备进行recovery的刷入。
     4. [TWRP](https://dl.twrp.me/kltechn/)
     5. [nethunter roma](https://build.nethunter.com/nightly/3.15.4-20170101-0951/) 注意，这里内核使用kltechn的
+<!--more-->
 
 ## 操作步骤：
 

@@ -14,6 +14,7 @@ typedef struct _object {
   PyObject_HEAD
 } PyObject;
 ```
+<!--more-->
 
 `PyObject_HEAD`是一个宏
 
