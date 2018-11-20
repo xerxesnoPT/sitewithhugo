@@ -31,3 +31,12 @@ tags: ['skill']
 - spc + c + l: 快速注释
 
 
+## vim命令
+
+- `:[rang] copy {address}` : 可用`:co` 或者`:t`缩写
+- `:[rang] move {address}` : 可用`:m`
+- `:w !sudo tee%`: readonly文件修改
+- `'<,'>`代表高亮区
+- 按`@:` 重复上次使用的`:`命令.
+- `:[rang] normal 「命令」` : 对指定行执行命令 exp: `:%normal A;` 每行结尾添加；
+
