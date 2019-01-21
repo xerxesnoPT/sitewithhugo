@@ -8,7 +8,7 @@ paginate = 10
 # below define highlight code style
 PygmentsCodeFences = true
 pygmentsuseclasses = false #this is the default setting
-pygmentsstyle = "manni"
+pygmentsStyle = "paraiso-dark"
 disqusShortname = "xerxes-1"
 
 [params]
