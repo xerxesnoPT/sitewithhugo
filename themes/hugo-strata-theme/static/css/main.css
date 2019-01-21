@@ -1577,7 +1577,7 @@
 		-webkit-transition: color 0.2s ease-in-out, border-color 0.2s ease-in-out;
 		-ms-transition: color 0.2s ease-in-out, border-color 0.2s ease-in-out;
 		transition: color 0.2s ease-in-out, border-color 0.2s ease-in-out;
-		border-bottom: dotted 1px;
+		border-bottom: 0px;
 		color: #49bf9d;
 		text-decoration: none;
 	}
@@ -1656,12 +1656,12 @@
 
 	hr {
 		border: 0;
-		border-bottom: solid 2px #efefef;
-		margin: 2em 0;
+		border-bottom: solid 1px #efefef;
+		margin: 0em 0;
 	}
 
 		hr.major {
-			margin: 3em 0;
+			margin: 0 0;
 		}
 
 	blockquote {
