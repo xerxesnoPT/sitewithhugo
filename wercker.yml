@@ -38,5 +38,5 @@ deploy:
             token: $GIT_TOKEN
             repo: xerxesnoPT/xerxesnoPT.github.io
             branch: master
-            domain: xerxesnoPT.github.io
+            domain: xerxes.top
             basedir: public
