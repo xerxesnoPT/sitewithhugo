@@ -34,14 +34,16 @@ tags: ['skill']
 ## vim命令
 YCM使用python3 只需要把
 `let g:ycm_python_binary_path = '/usr/local/bin/python3'`
+
 - C+n,p : 补全时上下移动
 - C+y :选中当前补全代码。按enter会回车
-- <leader>+; : 自动补全
-- <leade>+jd : 到函数定义处
+- `<leader>+;`: 自动补全
+- `<leade>+jd`: 到函数定义处
 - gd: 定位到rust函数定义处
-- <leader>+gd : rust doc文档
+- `<leader>+gd`: rust doc文档
 
 surround 使用:
+
 - ds": 删除 "
 - cs"( : 把"换成(
 - cst" a : 把"换成`<a>`标签
