@@ -36,6 +36,12 @@ typedef struct _IMAGE_FILE_HEADER {
     - 1->Drive 2->Gui 3->Cui
 - NumberOfRvaAndSizes: 用来指定DateDirectory数组(默认16)的个数。PE通过这个看实际数组大小，所以可能大小不是16.
 - DateDirectory: 结构体
+    > [0] = EXPORT Directory <br>
+    > [1] = IMPORT Directory <br>
+    > [2] = RESOURCE Directory <br>
+    > [3] = EXCEPTION Directory <br>
+    > [4] = SECURITY Directory <br>
+    > ......
 
 
 ## 节区头
@@ -73,6 +79,43 @@ typedef struct _IMAGE_IMPORT_BY_NAME {
     BYTE Name[1];
     } IMAGE_IMPORT_BY_NAME, *PIMAGE_IMPORT_BY_NAME;
 ```
+- IMAGE_IMPORT_DESCRIPTOR的内容在PE体中，位置信息在PE头中
+    > IMAGE_OPTIONAL_HEADER32.DataDirectory[1].VirtualAddress的值
+- IMAGE_THUNK_DATA 结构体:  每一个结构体对应DLL中导入的函数
+```c
+typedef struct _IMAGE_THUNK_DATA32 {
+    union {
+	DWORD ForwarderString; //RVA地址，指向forwarder string
+	DWORD Function;  // PDWORD, 被导入函数的入口地址
+	DWORD Ordiinal; //该函数的序数
+	DWORD AddressOfData; //一个RVA地址，指向IMAGE_IMPORT_BY_NAME
+    } u1;
+} IMAGE_THUNK_DATA32;
+```
+- IAT与INT的区别：
+1. **IMAGE_IMPORT_DESCRIPTION**中的**OriginalFirstThunk** 和 **FirstThunk**都指向**IMAGE_THUNK_DATA**结构体
+2. 当文件在磁盘上时，两者指向同一个**IMAGE_IMPORT_DESCRIPTION**，当文件载入内存时**OriginalFirstThunk** 中依然是指向函数的RVA, **FirstThunk**指向的内存变成了由装载器填充的导入函数地址，即IAT.
 
-## IMAGE_IMPORT_DESCRIPTOR的内容在PE体中，位置信息在PE头中
-> IMAGE_OPTIONAL_HEADER32.DataDirectory[1].VirtualAddress的值
+## EAT
+> EAT使不同的应用程序可以调用库文件中提供的函数。---> **IMAGE_EXPORT_DIRECTORY**  
+
+IMAGE_OPTIONAL_HEADER32.DataDirectory[0].VirtualAddress的值
+通常第一个4字节为VirtualAddress， 第二个4字节为Size成员
+```c
+typedef struct _IMAGE_EXPORT_DESCRIPTOR {
+    DWORD Characteristics; 
+    DWORD TimeDateStamp;
+    WORD MajorVersion;
+    WORD MinorVersion;
+    DWORD ForwarderChain;
+    DWORD Name;  //库的名字的string 地址 (RVA)
+    DWORD Base;
+    DWORD NumberOfFunctions; //实际Export函数的个数
+    DWORD NumberOfNames;  //Export函数 中具体名字的函数个数
+    DWORD AddressOfFuctions;   // 方法开始地址数组
+
+    DWORD AddressOfNames;   // 方法名称string name地址数组
+    DWORD AddressOfNameOrdinals;   // Oridinal地址数组
+} IMAGE_EXPORT_DIRECTORY, *PIMAGE_EXPORT_DIRECTORY;
+```
+
